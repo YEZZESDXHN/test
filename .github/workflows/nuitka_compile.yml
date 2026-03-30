@@ -43,18 +43,7 @@ jobs:
           ccache --set-config=max_size=10G
           ccache --set-config=compression=true
 
-      # ===========================
-      # GitHub 缓存（Nuitka + ccache）
-      # ===========================
-      - name: Cache Nuitka & ccache
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~\AppData\Local\nuitka
-            ~\.ccache
-          key: ${{ runner.os }}-nuitka-${{ env.PYTHON_VER }}
-          restore-keys: |
-            ${{ runner.os }}-nuitka
+      
 
       - name: Install dependencies
         shell: pwsh
@@ -68,6 +57,19 @@ jobs:
             # 如果没有 requirements.txt，可以在这里作为备用手动安装
             pip install pyside6 pydantic requests lark-oapi
           }
+      
+      # ===========================
+      # GitHub 缓存（Nuitka + ccache）
+      # ===========================
+      - name: Cache Nuitka & ccache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~\AppData\Local\nuitka
+            ~\.ccache
+          key: ${{ runner.os }}-nuitka-${{ env.PYTHON_VER }}
+          restore-keys: |
+            ${{ runner.os }}-nuitka
 
       - name: Build with Nuitka (Command Line)
         shell: pwsh

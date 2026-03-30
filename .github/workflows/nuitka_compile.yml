@@ -74,7 +74,7 @@ jobs:
           path: |
             ~\AppData\Local\nuitka
             ~\.ccache
-          key: ${{ runner.os }}-nuitka-${{ env.PYTHON_VER }}
+          key: ${{ runner.os }}-nuitka-${{ env.PYTHON_VER }}-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-nuitka
 

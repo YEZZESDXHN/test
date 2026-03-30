@@ -52,9 +52,9 @@ jobs:
           path: |
             C:\Users\runneradmin\AppData\Local\nuitka
             C:\Users\runneradmin\.ccache
-          key: ${{ runner.os }}-nuitka-${{ env.PYTHON_VER }}
+          key: ${{ runner.os }}-nuitka-${{ env.PYTHON_VER }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-nuitka
+            ${{ runner.os }}-nuitka-${{ env.PYTHON_VER }}-
 
       - name: Install dependencies
         shell: pwsh

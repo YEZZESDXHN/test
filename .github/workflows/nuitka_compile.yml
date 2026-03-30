@@ -71,7 +71,6 @@ jobs:
         with:
           path: |
             ${{ env.NUITKA_CACHE_DIR }}
-            ~\.ccache
           key: ${{ runner.os }}-nuitka-${{ env.PYTHON_VER }}-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-nuitka

@@ -57,13 +57,11 @@ jobs:
             # 如果没有 requirements.txt，可以在这里作为备用手动安装
             pip install pyside6 pydantic requests lark-oapi
           }
-            
-      - name: Pre-create Cache Directories
-        run: |
-          # 显式创建，确保缓存插件有地方写数据
-          New-Item -ItemType Directory -Force -Path "$HOME\AppData\Local\nuitka"
-          New-Item -ItemType Directory -Force -Path "$HOME\.ccache"
+
+      - name: 设置 Nuitka 自定义缓存目录
         shell: pwsh
+        run: |
+          echo "NUITKA_CACHE_DIR=${{ github.workspace }}\nuitka_cache" >> $env:GITHUB_ENV
 
       # ===========================
       # GitHub 缓存（Nuitka + ccache）
@@ -72,7 +70,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            ~\AppData\Local\nuitka
+            ${{ env.NUITKA_CACHE_DIR }}
             ~\.ccache
           key: ${{ runner.os }}-nuitka-${{ env.PYTHON_VER }}-${{ github.sha }}
           restore-keys: |

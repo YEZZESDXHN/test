@@ -85,8 +85,6 @@ jobs:
             --output-dir="${{ github.workspace }}/dist" `
             --output-filename=${{ env.APP_NAME }}.exe `
             --windows-console-mode=attach `
-            --show-progress `
-            --show-memory `
             --include-data-files="${{ github.workspace }}/README.md=README.md" `
             ${{ env.ENTRY_SCRIPT }}
 #            --include-plugin-directory="$qtPluginsPath\sqldrivers" `

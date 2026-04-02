@@ -91,7 +91,15 @@ jobs:
 #            --windows-disable-console `
 #             --windows-icon-from-ico=${{ env.ICON_PATH }} `
 
-
+      - name: 查看 NUITKA_CACHE_DIR 目录内容
+        shell: pwsh
+        run: |
+          # 打印环境变量路径
+          Write-Host "NUITKA_CACHE_DIR 路径：$env:NUITKA_CACHE_DIR"
+          
+          # 列出目录下所有内容
+          Write-Host "`n=== 目录内容 ==="
+          Get-ChildItem -Path $env:NUITKA_CACHE_DIR -Force
 
       - name: Prepare Artifacts
         id: prepare_artifact
